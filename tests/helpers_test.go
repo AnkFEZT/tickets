@@ -50,7 +50,7 @@ func sendTicketsStatus(t *testing.T, req ticketsHttp.TicketsStatusRequest, idemp
 
 	httpReq, err := http.NewRequest(
 		http.MethodPost,
-		"http://localhost:8080/tickets-status",
+		"http://localhost:8080/api/tickets-status",
 		bytes.NewBuffer(payload),
 	)
 	require.NoError(t, err)
@@ -69,7 +69,7 @@ func sendTicketRefund(t *testing.T, ticketID string) {
 
 	httpReq, err := http.NewRequest(
 		http.MethodPut,
-		"http://localhost:8080/ticket-refund/"+ticketID,
+		"http://localhost:8080/api/ticket-refund/"+ticketID,
 		nil,
 	)
 	require.NoError(t, err)
@@ -235,7 +235,7 @@ func bookTickets(t *testing.T, showID uuid.UUID, numberOfTickets int, customerEm
 
 	httpReq, err := http.NewRequest(
 		http.MethodPost,
-		"http://localhost:8080/book-tickets",
+		"http://localhost:8080/api/book-tickets",
 		bytes.NewBuffer(payload),
 	)
 	require.NoError(t, err)

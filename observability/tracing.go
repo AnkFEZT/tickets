@@ -2,7 +2,6 @@ package observability
 
 import (
 	"context"
-	"fmt"
 	"os"
 
 	"go.opentelemetry.io/otel"
@@ -16,7 +15,10 @@ import (
 func ConfigureTraceProvider() *tracesdk.TracerProvider {
 	jaegerEndpoint := os.Getenv("JAEGER_ENDPOINT")
 	if jaegerEndpoint == "" {
-		jaegerEndpoint = fmt.Sprintf("%s/jaeger-api/api/traces", os.Getenv("GATEWAY_ADDR"))
+		tp := tracesdk.NewTracerProvider()
+		otel.SetTracerProvider(tp)
+		otel.SetTextMapPropagator(propagation.TraceContext{})
+		return tp
 	}
 
 	exp, err := otlptracehttp.New(context.Background(), otlptracehttp.WithEndpointURL(jaegerEndpoint))

@@ -41,7 +41,7 @@ func (h FrontendHandler) GetStaticFiles(c echo.Context) error {
 		// File not found - serve index for SPA routing
 		return h.serveFile(c, h.indexFile)
 	}
-	f.Close()
+	_ = f.Close()
 
 	// Check if it's a directory
 	stat, err := fs.Stat(h.staticFS, cleanPath)

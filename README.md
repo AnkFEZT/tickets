@@ -112,28 +112,28 @@ make lint
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/tickets` | List all tickets |
-| POST | `/tickets-status` | Update ticket status |
-| PUT | `/ticket-refund/:ticket_id` | Initiate ticket refund |
+| GET | `/api/tickets` | List all tickets |
+| POST | `/api/tickets-status` | Update ticket status |
+| PUT | `/api/ticket-refund/:ticket_id` | Initiate ticket refund |
 
 ### Show Management
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/shows` | Create a new show |
+| POST | `/api/shows` | Create a new show |
 
 ### Booking Operations
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/book-tickets` | Book tickets for a show |
+| POST | `/api/book-tickets` | Book tickets for a show |
 
 ### Operations & Monitoring
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/ops/bookings` | List all bookings (with optional date filter) |
-| GET | `/ops/bookings/:id` | Get booking by ID |
+| GET | `/api/ops/bookings` | List all bookings (with optional date filter) |
+| GET | `/api/ops/bookings/:id` | Get booking by ID |
 | GET | `/health` | Health check |
 | GET | `/metrics` | Prometheus metrics |
 

@@ -5,7 +5,7 @@ TITLE="${1:?Usage: $0 <title> [venue] [tickets]}"
 VENUE="${2:-Colosseum}"
 TICKETS="${3:-10000}"
 
-curl -s -X POST http://localhost:8080/shows \
+curl -s -X POST http://localhost:8080/api/shows \
   -H "Content-Type: application/json" \
   -d "{
     \"dead_nation_id\": \"0fe9f3bf-160f-49be-9509-862e91ee8c33\",
