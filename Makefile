@@ -12,6 +12,7 @@ endif
 
 lint:
 	@grep -rnw --include="*.go" 'collect \*assert\.CollectT' . && exit 1 || exit 0
+	go run github.com/golangci/golangci-lint/cmd/golangci-lint@latest run
 
 docker-down:
 	docker compose down -v
