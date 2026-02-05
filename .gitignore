@@ -1,0 +1,74 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+/dist/
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.html
+coverage.txt
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Dependency directories (if not vendoring)
+/vendor/
+
+# IDE and editor files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local configuration
+*.local
+config.local.*
+
+# Debug files
+debug
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Docker volumes and data
+docker/data/
+docker/volumes/
+.docker/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Claude Code settings (optional - remove if you want to share)
+.claude/
+
+# Build cache
+.cache/
+
+# Air live reload temp directory (if using air)
+tmp/
+
+# Profiling
+*.prof
+*.pprof

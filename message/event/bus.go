@@ -1,0 +1,21 @@
+package event
+
+import (
+	"github.com/ThreeDotsLabs/watermill/components/cqrs"
+	"github.com/ThreeDotsLabs/watermill/message"
+)
+
+func NewEventBus(pub message.Publisher) *cqrs.EventBus {
+	bus, err := cqrs.NewEventBusWithConfig(pub, cqrs.EventBusConfig{
+		Marshaler: Marshaler,
+		GeneratePublishTopic: func(params cqrs.GenerateEventPublishTopicParams) (string, error) {
+			return "events", nil
+		},
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	return bus
+}
