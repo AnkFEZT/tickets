@@ -7,6 +7,7 @@ import (
 	libHttp "github.com/ThreeDotsLabs/go-event-driven/v2/common/http"
 	"github.com/ThreeDotsLabs/watermill/components/cqrs"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/labstack/echo/otelecho"
 )
@@ -16,6 +17,11 @@ func NewHttpRouter(eventBus *cqrs.EventBus, commandBus *cqrs.CommandBus, tickets
 	e.HideBanner = true
 	e.HTTPErrorHandler = libHttp.HandleError
 
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://localhost:3000"},
+		AllowMethods: []string{echo.GET, echo.POST, echo.PUT, echo.DELETE},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))
 	e.Use(RequestIDMiddleware())
 	e.Use(BodyDumpMiddleware(func(c echo.Context) bool {
 		return strings.HasPrefix(c.Request().URL.Path, "/static") || c.Request().URL.Path == "/" || !strings.HasPrefix(c.Request().URL.Path, "/api")
